@@ -12,7 +12,7 @@ Usage:
 
 1. Negative test SSL connection: 
 
-    ```java -jar SSLPoke-0.0.1-SNAPSHOT.jar <server> 443```
+    ```java -jar build/libs/SSLPoke-1.0.jar <server> 443```
 
     you should get exception like this:
     
@@ -28,7 +28,7 @@ Usage:
     
 1. Do the test again and specify trustStore with password:
  
-    ```java -Djavax.net.ssl.trustStore=trustStore.keystore -Djavax.net.ssl.trustStorePassword=changeit -jar SSLPoke-0.0.1-SNAPSHOT.jar <server> 443```
+    ```java -Djavax.net.ssl.trustStore=trustStore.keystore -Djavax.net.ssl.trustStorePassword=changeit -jar build/libs/SSLPoke-1.0.jar <server> 443```
 
     you should get positive answer:
     
