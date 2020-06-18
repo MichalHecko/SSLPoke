@@ -1,4 +1,16 @@
+buildscript {
+	repositories {
+		maven {
+			url 'https://plugins.gradle.org/m2/'
+		}
+	}
+	dependencies {
+		classpath "gradle.plugin.org.mikeneck:graalvm-native-image-plugin:0.5.0"
+	}
+}
+
 apply plugin: 'java'
+apply plugin: "org.mikeneck.graalvm-native-image"
 
 version = '1.0'
 sourceCompatibility = 1.8
@@ -15,4 +27,18 @@ jar {
 
 dependencies {
 	
+}
+
+nativeImage {
+	graalVmHome = System.getProperty('java.home')
+	mainClass = 'sk.mhecko.ssl.SSLPoke'
+	executableName = 'sslpoke'
+	outputDirectory = file("$buildDir/bin")
+	arguments(
+			'-H:EnableURLProtocols=http,https',
+			'-H:+JNI',
+			'--no-fallback',
+			'--enable-all-security-services',
+			'--report-unsupported-elements-at-runtime'
+	)
 }
